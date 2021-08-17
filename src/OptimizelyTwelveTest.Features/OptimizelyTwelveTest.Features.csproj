@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.AspNetCore.Mvc" Version="12.0.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.0.0-pre-021814" />
+  </ItemGroup>
+
+</Project>
