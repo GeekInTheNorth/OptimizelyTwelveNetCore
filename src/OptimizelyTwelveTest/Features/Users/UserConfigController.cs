@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace OptimizelyTwelveTest.Features.Users
+﻿namespace OptimizelyTwelveTest.Features.Users
 {
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
     using EPiServer.Authorization;
     using EPiServer.Shell.Security;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     [ApiController]
     public class UserConfigController : ControllerBase

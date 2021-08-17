@@ -4,9 +4,11 @@
     using EPiServer.ServiceLocation;
     using EPiServer.Shell.Security;
     using EPiServer.Web.Mvc;
-    using System.Threading.Tasks;
     using EPiServer.Web.Routing;
+
     using Microsoft.AspNetCore.Mvc;
+
+    using System.Threading.Tasks;
 
     public abstract class PageControllerBase<T> : PageController<T>
         where T : PageData

@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using System;
-
-namespace OptimizelyTwelveTest
+﻿namespace OptimizelyTwelveTest
 {
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+
+    using System;
+
     public class Program
     {
         public static void Main(string[] args)

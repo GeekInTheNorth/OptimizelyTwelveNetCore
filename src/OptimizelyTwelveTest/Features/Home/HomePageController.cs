@@ -1,8 +1,8 @@
 ﻿namespace OptimizelyTwelveTest.Features.Home
 {
-    using OptimizelyTwelveTest.Features.Common;
-
     using Microsoft.AspNetCore.Mvc;
+
+    using OptimizelyTwelveTest.Features.Common;
 
     public class HomePageController : PageControllerBase<HomePage>
     {
