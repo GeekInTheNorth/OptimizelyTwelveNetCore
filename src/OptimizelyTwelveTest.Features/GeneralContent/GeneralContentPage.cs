@@ -1,6 +1,6 @@
-﻿namespace OptimizelyTwelveTest.Features.Home
+﻿namespace OptimizelyTwelveTest.Features.GeneralContent
 {
-    using Common;
+    using Common.Pages;
 
     using EPiServer.Core;
     using EPiServer.DataAbstraction;
@@ -8,14 +8,13 @@
     using EPiServer.Web;
 
     using System.ComponentModel.DataAnnotations;
-    using Common.Pages;
 
     [ContentType(
-        DisplayName = "Home Page",
-        GUID = "060C7B3A-971D-4632-92C4-B493C2DA8D52",
-        Description = "A page designed as a default landing page.",
+        DisplayName = "GeneralContentPage", 
+        GUID = "30479482-2964-4a41-8da4-013e1b5e4a9b", 
+        Description = "",
         GroupName = SystemTabNames.Content)]
-    public class HomePage : SitePageData
+    public class GeneralContentPage : SitePageData
     {
         [Display(
             Name = "Hero Image",
@@ -35,7 +34,7 @@
         [Display(
             Name = "Main Content Area",
             Description = "Renders blocks within the main content section of the home page.",
-            GroupName = SystemTabNames.Content, 
+            GroupName = SystemTabNames.Content,
             Order = 30)]
         public virtual ContentArea MainContentArea { get; set; }
     }
