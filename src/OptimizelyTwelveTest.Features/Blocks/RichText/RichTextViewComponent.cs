@@ -5,9 +5,9 @@
 
     public class RichTextBlockViewComponent : BlockComponent<RichTextBlock>
     {
-        public override IViewComponentResult Invoke(RichTextBlock currentBlock)
+        public override IViewComponentResult Invoke(RichTextBlock currentContent)
         {
-            return View(currentBlock);
+            return View(currentContent);
         }
     }
 }
