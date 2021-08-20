@@ -1,9 +1,11 @@
 ﻿@using EPiServer.Web.Mvc.Html
+@model OptimizelyTwelveTest.Features.Common.Pages.ISitePageData 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title></title>
+    @await Component.InvokeAsync("MetaData", new { sitePage = Model })
+
     @await Html.RenderEPiServerQuickNavigatorAsync()
 </head>
 <body>
