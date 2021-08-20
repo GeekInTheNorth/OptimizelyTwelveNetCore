@@ -1,6 +1,6 @@
 ﻿namespace OptimizelyTwelveTest.Features.Home
 {
-    using Common;
+    using Common.Pages;
 
     using EPiServer.Core;
     using EPiServer.DataAbstraction;
@@ -8,14 +8,13 @@
     using EPiServer.Web;
 
     using System.ComponentModel.DataAnnotations;
-    using Common.Pages;
 
     [ContentType(
         DisplayName = "Home Page",
         GUID = "060C7B3A-971D-4632-92C4-B493C2DA8D52",
         Description = "A page designed as a default landing page.",
         GroupName = SystemTabNames.Content)]
-    public class HomePage : SitePageData
+    public partial class HomePage : SitePageData
     {
         [Display(
             Name = "Hero Image",

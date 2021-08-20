@@ -8,6 +8,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
+    using ServiceExtensions;
+
     public class Startup
     {
         private readonly IWebHostEnvironment _webHostingEnvironment;
@@ -25,15 +27,14 @@
             }
 
             services.AddMvc();
-            services.AddCms()
-                .AddCmsAspNetIdentity<ApplicationUser>();
+            services.AddCms().AddCmsAspNetIdentity<ApplicationUser>();
+            services.AddCustomDependencies();
 
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/util/Login";
             });
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
