@@ -1,10 +1,10 @@
 ﻿@using EPiServer.Web.Mvc.Html
-@model OptimizelyTwelveTest.Features.Common.Pages.ISitePageModel<OptimizelyTwelveTest.Features.Home.HomePage>
+@model OptimizelyTwelveTest.Features.Home.HomePage
 
 <div>
-    @Html.PropertyFor(x => x.Content.HeroImage)
-    <h1>@Html.PropertyFor(x => x.Content.Heading)</h1>
+    @Html.PropertyFor(x => x.HeroImage)
+    <h1>@Html.PropertyFor(x => x.Heading)</h1>
     <div>
-        @Html.PropertyFor(x => x.Content.MainContentArea)
+        @Html.PropertyFor(x => x.MainContentArea)
     </div>
 </div>
