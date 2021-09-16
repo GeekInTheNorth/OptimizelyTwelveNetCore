@@ -1,6 +1,7 @@
 ﻿namespace OptimizelyTwelveTest
 {
     using EPiServer.Cms.UI.AspNetIdentity;
+    using EPiServer.Scheduler;
     using EPiServer.Web.Routing;
 
     using Microsoft.AspNetCore.Builder;
@@ -23,11 +24,16 @@
         {
             if (_webHostingEnvironment.IsDevelopment())
             {
-                //Add development configuration
+                services.Configure<SchedulerOptions>(o =>
+                {
+                    o.Enabled = false;
+                });
             }
 
+            services.AddCmsAspNetIdentity<ApplicationUser>();
             services.AddMvc();
-            services.AddCms().AddCmsAspNetIdentity<ApplicationUser>();
+            services.AddCms();
+                    
             services.AddCustomDependencies();
 
             services.ConfigureApplicationCookie(options =>

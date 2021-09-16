@@ -5,7 +5,7 @@
 
     public class ImageContentViewComponent : PartialContentComponent<ImageContent>
     {
-        public override IViewComponentResult Invoke(ImageContent currentContent)
+        protected override IViewComponentResult InvokeComponent(ImageContent currentContent)
         {
             return View(currentContent);
         }

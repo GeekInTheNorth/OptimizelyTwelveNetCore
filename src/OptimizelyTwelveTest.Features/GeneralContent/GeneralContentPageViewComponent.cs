@@ -5,7 +5,7 @@
 
     public class GeneralContentPageViewComponent : PartialContentComponent<GeneralContentPage>
     {
-        public override IViewComponentResult Invoke(GeneralContentPage currentContent)
+        protected override IViewComponentResult InvokeComponent(GeneralContentPage currentContent)
         {
             return View(currentContent);
         }
