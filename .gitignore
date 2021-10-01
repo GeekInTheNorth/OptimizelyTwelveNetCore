@@ -390,3 +390,6 @@ FodyWeavers.xsd
 # Optimizely
 
 App_Data/
+
+# Modules
+*/OptimizelyTwelveTest.Features/modules/**

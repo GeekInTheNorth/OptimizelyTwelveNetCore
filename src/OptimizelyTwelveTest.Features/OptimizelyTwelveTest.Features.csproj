@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="C:\Users\mark.stott\.nuget\packages\episerver.find.cms\14.0.2\contentFiles\any\any\modules\_protected\Find\Find.zip" />
+    <Compile Remove="modules\**" />
+    <EmbeddedResource Remove="modules\**" />
+    <None Remove="modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="$(UserProfile)\.nuget\packages\episerver.find.cms\14.0.2\contentFiles\any\any\modules\_protected\Find\Find.zip" />
   </ItemGroup>
 
   <ItemGroup>
