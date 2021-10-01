@@ -33,6 +33,7 @@
             services.AddCmsAspNetIdentity<ApplicationUser>();
             services.AddMvc();
             services.AddCms();
+            services.AddFind();
                     
             services.AddCustomDependencies();
 
