@@ -8,6 +8,6 @@
     {
         public int TotalRecords { get; set; }
 
-        public IList<ISitePageData> Results { get; set; }
+        public IList<SearchResultItem> Results { get; set; }
     }
 }
