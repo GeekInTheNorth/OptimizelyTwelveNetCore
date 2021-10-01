@@ -4,10 +4,14 @@
     using EPiServer.Scheduler;
     using EPiServer.Web.Routing;
 
+    using MediatR;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using OptimizelyTwelveTest.Features.Common;
 
     using ServiceExtensions;
 
@@ -34,7 +38,7 @@
             services.AddMvc();
             services.AddCms();
             services.AddFind();
-                    
+            services.AddMediatR(typeof(GroupNames).Assembly);
             services.AddCustomDependencies();
 
             services.ConfigureApplicationCookie(options =>

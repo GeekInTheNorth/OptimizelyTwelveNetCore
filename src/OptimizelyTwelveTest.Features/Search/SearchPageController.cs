@@ -1,22 +1,59 @@
 ﻿namespace OptimizelyTwelveTest.Features.Search
 {
+    using MediatR;
+
     using Microsoft.AspNetCore.Mvc;
+
+    using Newtonsoft.Json;
+
     using OptimizelyTwelveTest.Features.Common;
+
+    using System.Threading.Tasks;
 
     public class SearchPageController : PageControllerBase<SearchPage>
     {
-        [HttpGet]
-        public IActionResult Index(SearchPage currentContent)
+        private readonly IMediator _mediator;
+
+        public SearchPageController(IMediator mediator)
         {
-            return View(currentContent);
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult Search(SearchPage currentContent, string searchText, int page)
+        public async Task<IActionResult> Index(SearchPage currentContent, string searchText, int page = 1)
         {
-            return new ContentResult()
+            var query = new SearchQuery
             {
-                Content = "{ \"TODO\": \"Create search content\" }",
+                InitialPageSize = currentContent.InitialPageSize,
+                LoadMorePageSize = currentContent.LoadMorePageSize,
+                Page = page,
+                SearchText = searchText
+            };
+            var response = await _mediator.Send(query);
+            var model = new SearchPageViewModel
+            {
+                CurrentPage = currentContent,
+                SearchResults = response
+            };
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(SearchPage currentContent, string searchText, int page)
+        {
+            var query = new SearchQuery
+            {
+                InitialPageSize = currentContent.InitialPageSize,
+                LoadMorePageSize = currentContent.LoadMorePageSize,
+                Page = page,
+                SearchText = searchText
+            };
+            var response = await _mediator.Send(query);
+
+            return new ContentResult
+            {
+                Content = JsonConvert.SerializeObject(response),
                 ContentType = "application/json",
                 StatusCode = 200
             };

@@ -8,7 +8,9 @@
     {
         public IActionResult Index(HomePage currentPage)
         {
-            return View(currentPage);
+            var model = new HomePageViewModel { CurrentPage = currentPage };
+
+            return View(model);
         }
     }
 }
