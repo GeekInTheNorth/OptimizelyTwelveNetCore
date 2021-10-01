@@ -5,6 +5,23 @@
     @Html.PropertyFor(x => x.CurrentPage.HeroImage)
     <h1>@Html.PropertyFor(x => x.CurrentPage.Heading)</h1>
     <div>
-        <span>Search stuff to go here.</span>
+        @if (Model.SearchResults != null && Model.SearchResults.Results != null)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Teaser Text</td>
+                    </tr>
+                </thead>
+                @foreach (var sitePage in Model.SearchResults.Results)
+                {
+                    <tr>
+                        <td>@sitePage.TeaserTitle</td>
+                        <td>@sitePage.TeaserText</td>
+                    </tr>
+                }
+            </table>
+        }
     </div>
 </div>
