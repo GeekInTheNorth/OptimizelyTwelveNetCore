@@ -5,8 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="modules\**" />
+    <EmbeddedResource Remove="modules\**" />
+    <None Remove="modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="$(UserProfile)\.nuget\packages\episerver.find.cms\14.0.2\contentFiles\any\any\modules\_protected\Find\Find.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EPiServer.CMS.AspNetCore.Mvc" Version="12.0.3" />
     <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.0.2" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="14.0.2" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

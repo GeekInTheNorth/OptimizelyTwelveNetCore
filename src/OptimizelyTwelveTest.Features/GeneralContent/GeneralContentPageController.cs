@@ -7,7 +7,9 @@
     {
         public IActionResult Index(GeneralContentPage currentContent)
         {
-            return View(currentContent);
+            var model = new GeneralContentPageViewModel { CurrentPage = currentContent };
+
+            return View(model);
         }
     }
 }

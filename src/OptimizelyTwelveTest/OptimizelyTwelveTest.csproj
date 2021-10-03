@@ -5,6 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS" Version="12.0.2" />
+    <PackageReference Include="EPiServer.Find.Cms" Version="14.0.2" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
