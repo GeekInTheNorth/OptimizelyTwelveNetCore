@@ -3,8 +3,11 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    using OptimizelyTwelveTest.Features.Security;
+
     [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
     [Route("[controller]")]
+    [SecurityHeaderAction]
     public class CustomAdminPageController : Controller
     {
         [Route("[action]")]
