@@ -12,6 +12,7 @@
     using Microsoft.Extensions.Hosting;
 
     using OptimizelyTwelveTest.Features.Common;
+    using OptimizelyTwelveTest.Features.RobotsHandler;
 
     using ServiceExtensions;
 
@@ -40,6 +41,7 @@
             services.AddFind();
             services.AddMediatR(typeof(GroupNames).Assembly);
             services.AddCustomDependencies();
+            services.AddRobotsHandler();
 
             services.ConfigureApplicationCookie(options =>
             {
