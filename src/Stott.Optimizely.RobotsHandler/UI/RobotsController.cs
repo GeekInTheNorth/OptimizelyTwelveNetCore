@@ -14,13 +14,19 @@ namespace Stott.Optimizely.RobotsHandler.UI
     {
         private readonly IRobotsContentService _service;
 
+        private readonly IRobotsAdminViewModelBuilder _viewModelBuilder;
+
         private readonly ILogger _logger = LogManager.GetLogger(typeof(RobotsController));
 
-        public RobotsController(IRobotsContentService service)
+        public RobotsController(
+            IRobotsContentService service, 
+            IRobotsAdminViewModelBuilder viewModelBuilder)
         {
             _service = service;
+            _viewModelBuilder = viewModelBuilder;
         }
 
+        [HttpGet]
         [Route("robots.txt")]
         public IActionResult Index()
         {
@@ -53,11 +59,14 @@ namespace Stott.Optimizely.RobotsHandler.UI
             }
         }
 
+        [HttpGet]
         [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
         [Route("[controller]/[action]")]
         public IActionResult Admin(Guid? siteId)
         {
-            return View("RobotsAdmin");
+            var model = _viewModelBuilder.WithSiteId(siteId).Build();
+
+            return View("RobotsAdmin", model);
         }
     }
 }

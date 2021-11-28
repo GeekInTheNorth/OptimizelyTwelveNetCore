@@ -43,13 +43,18 @@ namespace Stott.Optimizely.RobotsHandler.Services
             var site = GetCurrentSite(requestHost);
             if (site == null)
             {
-                throw new RobotsContentException($"Cannot resolve CMS site from the request host: {requestHost}");
+                throw new RobotsInvalidSiteException($"Cannot resolve CMS site from the request host: {requestHost}");
             }
 
-            var robots = robotsContentRepository.Get(site.Id);
+            return GetRobotsContent(site.Id);
+        }
+
+        public string GetRobotsContent(Guid siteId)
+        {
+            var robots = robotsContentRepository.Get(siteId);
             if (robots == null)
             {
-                throw new RobotsContentException($"Robots.txt has not been defined for the current host: {requestHost}");
+                return GetDefaultRobotsContent(false);
             }
 
             return robots.RobotsContent;

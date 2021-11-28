@@ -7,15 +7,10 @@ namespace Stott.Optimizely.RobotsHandler.UI.ViewModels
     {
         public List<SiteViewModel> Sites { get; set; }
 
-        public Guid CurrentSiteId { get; set; }
+        public Guid? CurrentSiteId { get; set; }
+
+        public string CurrentSiteName { get; set; }
 
         public string CurrentRobotsContent { get; set; }
-    }
-
-    public class SiteViewModel
-    {
-        public Guid SiteId { get; set; }
-
-        public string SiteName { get; set; }
     }
 }

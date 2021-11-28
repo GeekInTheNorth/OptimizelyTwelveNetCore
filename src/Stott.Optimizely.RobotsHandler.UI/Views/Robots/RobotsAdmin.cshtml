@@ -1,5 +1,7 @@
 ﻿@using EPiServer.Shell.Navigation
 
+@model Stott.Optimizely.RobotsHandler.UI.ViewModels.RobotsAdminViewModel
+
 @{
     Layout = null;
 }
@@ -27,6 +29,13 @@
         <h1>
             Robots.txt Management
         </h1>
+        @if (Model.CurrentSiteId != null)
+        {
+            <p>Current Site Id: @Model.CurrentSiteId.Value</p>
+            <p>Current Site Name: @Model.CurrentSiteName</p>
+        }
+
+        @Html.TextAreaFor(x => x.CurrentRobotsContent)
     </div>
 </body>
 </html>
