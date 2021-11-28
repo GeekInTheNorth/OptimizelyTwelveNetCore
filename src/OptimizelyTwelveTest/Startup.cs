@@ -35,6 +35,7 @@
                 });
             }
 
+            services.AddRazorPages();
             services.AddCmsAspNetIdentity<ApplicationUser>();
             services.AddMvc();
             services.AddCms();

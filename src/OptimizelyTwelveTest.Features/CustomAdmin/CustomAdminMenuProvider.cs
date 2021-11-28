@@ -27,7 +27,7 @@
                 SortIndex = 102
             };
 
-            return new List<MenuItem>(1)
+            return new List<MenuItem>(3)
             {
                 adminModule,
                 urlMenuItem1,

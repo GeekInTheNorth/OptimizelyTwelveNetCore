@@ -56,7 +56,7 @@ namespace OptimizelyTwelveTest.Features.RobotsHandler
         [Route("[controller]/[action]")]
         public IActionResult Admin()
         {
-            return View();
+            return View("RobotsAdmin");
         }
     }
 }

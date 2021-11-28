@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -11,6 +11,7 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OptimizelyTwelveTest.Features.UI\OptimizelyTwelveTest.Features.UI.csproj" />
     <ProjectReference Include="..\OptimizelyTwelveTest.Features\OptimizelyTwelveTest.Features.csproj" />
   </ItemGroup>
 </Project>
