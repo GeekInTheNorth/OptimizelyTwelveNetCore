@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler
+namespace Stott.Optimizely.RobotsHandler.Services
 {
     public interface IRobotsContentService
     {

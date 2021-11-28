@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler.Exceptions
+namespace Stott.Optimizely.RobotsHandler.Exceptions
 {
     public class RobotsContentException : Exception
     {

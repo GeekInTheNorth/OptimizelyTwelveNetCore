@@ -12,9 +12,10 @@
     using Microsoft.Extensions.Hosting;
 
     using OptimizelyTwelveTest.Features.Common;
-    using OptimizelyTwelveTest.Features.RobotsHandler;
 
     using ServiceExtensions;
+
+    using Stott.Optimizely.RobotsHandler.Configuration;
 
     public class Startup
     {

@@ -3,7 +3,7 @@
 using EPiServer.Data;
 using EPiServer.Data.Dynamic;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler.Models
+namespace Stott.Optimizely.RobotsHandler.Models
 {
     public class RobotsEntity : IDynamicData
     {

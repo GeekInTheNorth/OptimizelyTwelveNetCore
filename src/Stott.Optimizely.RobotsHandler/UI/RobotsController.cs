@@ -5,9 +5,10 @@ using EPiServer.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using OptimizelyTwelveTest.Features.RobotsHandler.Exceptions;
+using Stott.Optimizely.RobotsHandler.Exceptions;
+using Stott.Optimizely.RobotsHandler.Services;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler
+namespace Stott.Optimizely.RobotsHandler.UI
 {
     public class RobotsController : Controller
     {
@@ -34,7 +35,7 @@ namespace OptimizelyTwelveTest.Features.RobotsHandler
                     StatusCode = 200
                 };
             }
-            catch(RobotsContentException exception)
+            catch (RobotsContentException exception)
             {
                 _logger.Error("A custom robots.txt does not exist for the current site.", exception);
 
@@ -45,7 +46,7 @@ namespace OptimizelyTwelveTest.Features.RobotsHandler
                     StatusCode = 200
                 };
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 _logger.Error("Failed to load the robots.txt for the current site.", exception);
                 throw;
@@ -54,7 +55,7 @@ namespace OptimizelyTwelveTest.Features.RobotsHandler
 
         [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
         [Route("[controller]/[action]")]
-        public IActionResult Admin()
+        public IActionResult Admin(Guid? siteId)
         {
             return View("RobotsAdmin");
         }

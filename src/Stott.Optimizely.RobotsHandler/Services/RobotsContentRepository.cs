@@ -3,9 +3,9 @@
 using EPiServer.Data;
 using EPiServer.Data.Dynamic;
 
-using OptimizelyTwelveTest.Features.RobotsHandler.Models;
+using Stott.Optimizely.RobotsHandler.Models;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler
+namespace Stott.Optimizely.RobotsHandler.Services
 {
     public class RobotsContentRepository : IRobotsContentRepository
     {

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -26,6 +26,10 @@
 
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Stott.Optimizely.RobotsHandler\Stott.Optimizely.RobotsHandler.csproj" />
   </ItemGroup>
 
 </Project>

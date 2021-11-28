@@ -1,8 +1,8 @@
 ﻿using System;
 
-using OptimizelyTwelveTest.Features.RobotsHandler.Models;
+using Stott.Optimizely.RobotsHandler.Models;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler
+namespace Stott.Optimizely.RobotsHandler.Services
 {
     public interface IRobotsContentRepository
     {

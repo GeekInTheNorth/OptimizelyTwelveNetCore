@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler
+using Stott.Optimizely.RobotsHandler.Services;
+
+namespace Stott.Optimizely.RobotsHandler.Configuration
 {
     public static class ServiceExtensions
     {

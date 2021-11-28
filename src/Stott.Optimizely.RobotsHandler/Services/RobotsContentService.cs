@@ -4,11 +4,10 @@ using System.Text;
 
 using EPiServer.Web;
 
-using OptimizelyTwelveTest.Features.RobotsHandler.Exceptions;
+using Stott.Optimizely.RobotsHandler.Exceptions;
 
-namespace OptimizelyTwelveTest.Features.RobotsHandler
+namespace Stott.Optimizely.RobotsHandler.Services
 {
-
     public class RobotsContentService : IRobotsContentService
     {
         private readonly ISiteDefinitionRepository siteDefinitionRepository;
@@ -48,7 +47,7 @@ namespace OptimizelyTwelveTest.Features.RobotsHandler
             }
 
             var robots = robotsContentRepository.Get(site.Id);
-            if (robots == null) 
+            if (robots == null)
             {
                 throw new RobotsContentException($"Robots.txt has not been defined for the current host: {requestHost}");
             }
@@ -58,12 +57,12 @@ namespace OptimizelyTwelveTest.Features.RobotsHandler
 
         public void SaveRobotsContent(Guid siteId, string robotsContent)
         {
-            if (siteId == null || siteId == Guid.Empty)
+            if (!Guid.Empty.Equals(siteId))
             {
                 throw new ArgumentException($"{nameof(siteId)} is not a non-null non-empty value.", nameof(siteId));
             }
 
-            var existingSite = this.siteDefinitionRepository.Get(siteId);
+            var existingSite = siteDefinitionRepository.Get(siteId);
             if (existingSite == null)
             {
                 throw new ArgumentException($"{nameof(siteId)} does not correlate to a known site.", nameof(siteId));
@@ -74,7 +73,7 @@ namespace OptimizelyTwelveTest.Features.RobotsHandler
 
         private SiteDefinition GetCurrentSite(string requestHost)
         {
-            var sites = this.siteDefinitionRepository.List();
+            var sites = siteDefinitionRepository.List();
 
             return sites.FirstOrDefault(s => s.Hosts.Any(h => h.Name.Contains(requestHost, StringComparison.OrdinalIgnoreCase)));
         }
