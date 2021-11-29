@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Stott.Optimizely.RobotsHandler.Exceptions;
 using Stott.Optimizely.RobotsHandler.Services;
+using Stott.Optimizely.RobotsHandler.UI.ViewModels;
 
 namespace Stott.Optimizely.RobotsHandler.UI
 {
@@ -62,9 +63,17 @@ namespace Stott.Optimizely.RobotsHandler.UI
         [HttpGet]
         [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
         [Route("[controller]/[action]")]
-        public IActionResult Admin(Guid? siteId)
+        public IActionResult Admin(string siteId)
         {
-            var model = _viewModelBuilder.WithSiteId(siteId).Build();
+            RobotsAdminViewModel model;
+            if (!string.IsNullOrWhiteSpace(siteId) && Guid.TryParse(siteId, out var siteIdGuid))
+            {
+                model = _viewModelBuilder.WithSiteId(siteIdGuid).Build();
+            }
+            else
+            {
+                model = _viewModelBuilder.Build();
+            }
 
             return View("RobotsAdmin", model);
         }
