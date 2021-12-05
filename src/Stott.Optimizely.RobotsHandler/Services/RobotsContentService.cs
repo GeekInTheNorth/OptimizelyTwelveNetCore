@@ -62,7 +62,7 @@ namespace Stott.Optimizely.RobotsHandler.Services
 
         public void SaveRobotsContent(Guid siteId, string robotsContent)
         {
-            if (!Guid.Empty.Equals(siteId))
+            if (Guid.Empty.Equals(siteId))
             {
                 throw new ArgumentException($"{nameof(siteId)} is not a non-null non-empty value.", nameof(siteId));
             }

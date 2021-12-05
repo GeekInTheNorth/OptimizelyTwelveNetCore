@@ -16,20 +16,24 @@ namespace Stott.Optimizely.RobotsHandler.UI
     {
         private readonly IRobotsContentService _service;
 
-        private readonly IRobotsAdminViewModelBuilder _editViewModelBuilder;
+        private readonly IRobotsEditViewModelBuilder _editViewModelBuilder;
 
         private readonly IRobotsListViewModelBuilder _listingViewModelBuilder;
+
+        private readonly IRobotsContentService _robotsContentService;
 
         private readonly ILogger _logger = LogManager.GetLogger(typeof(RobotsController));
 
         public RobotsController(
             IRobotsContentService service,
-            IRobotsAdminViewModelBuilder viewModelBuilder, 
-            IRobotsListViewModelBuilder listingViewModelBuilder)
+            IRobotsEditViewModelBuilder viewModelBuilder,
+            IRobotsListViewModelBuilder listingViewModelBuilder, 
+            IRobotsContentService robotsContentService)
         {
             _service = service;
             _editViewModelBuilder = viewModelBuilder;
             _listingViewModelBuilder = listingViewModelBuilder;
+            _robotsContentService = robotsContentService;
         }
 
         [HttpGet]
@@ -87,15 +91,27 @@ namespace Stott.Optimizely.RobotsHandler.UI
         [Route("[controller]/[action]")]
         public IActionResult Edit(string siteId)
         {
-            RobotsAdminViewModel model;
+            RobotsEditViewModel model;
             if (!string.IsNullOrWhiteSpace(siteId) && Guid.TryParse(siteId, out var siteIdGuid))
             {
                 model = _editViewModelBuilder.WithSiteId(siteIdGuid).Build();
             }
             else
             {
-                model = _editViewModelBuilder.Build();
+                return RedirectToAction("Edit");
             }
+
+            return View("RobotsSiteEdit", model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
+        [Route("[controller]/[action]")]
+        public IActionResult Edit(RobotsEditViewModel formSubmitModel)
+        {
+            _robotsContentService.SaveRobotsContent(formSubmitModel.SiteId, formSubmitModel.RobotsContent);
+
+            var model = _editViewModelBuilder.WithSiteId(formSubmitModel.SiteId).Build();
 
             return View("RobotsSiteEdit", model);
         }
