@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using EPiServer.Logging;
 
@@ -15,16 +16,20 @@ namespace Stott.Optimizely.RobotsHandler.UI
     {
         private readonly IRobotsContentService _service;
 
-        private readonly IRobotsAdminViewModelBuilder _viewModelBuilder;
+        private readonly IRobotsAdminViewModelBuilder _editViewModelBuilder;
+
+        private readonly IRobotsListViewModelBuilder _listingViewModelBuilder;
 
         private readonly ILogger _logger = LogManager.GetLogger(typeof(RobotsController));
 
         public RobotsController(
-            IRobotsContentService service, 
-            IRobotsAdminViewModelBuilder viewModelBuilder)
+            IRobotsContentService service,
+            IRobotsAdminViewModelBuilder viewModelBuilder, 
+            IRobotsListViewModelBuilder listingViewModelBuilder)
         {
             _service = service;
-            _viewModelBuilder = viewModelBuilder;
+            _editViewModelBuilder = viewModelBuilder;
+            _listingViewModelBuilder = listingViewModelBuilder;
         }
 
         [HttpGet]
@@ -63,19 +68,36 @@ namespace Stott.Optimizely.RobotsHandler.UI
         [HttpGet]
         [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
         [Route("[controller]/[action]")]
-        public IActionResult Admin(string siteId)
+        public IActionResult List()
+        {
+            var model = _listingViewModelBuilder.Build();
+
+            if (model.List.Count == 1)
+            {
+                var id = model.List.First().Id;
+
+                return RedirectToAction("Edit", new { siteId = id });
+            }
+
+            return View("RobotsSiteList", model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
+        [Route("[controller]/[action]")]
+        public IActionResult Edit(string siteId)
         {
             RobotsAdminViewModel model;
             if (!string.IsNullOrWhiteSpace(siteId) && Guid.TryParse(siteId, out var siteIdGuid))
             {
-                model = _viewModelBuilder.WithSiteId(siteIdGuid).Build();
+                model = _editViewModelBuilder.WithSiteId(siteIdGuid).Build();
             }
             else
             {
-                model = _viewModelBuilder.Build();
+                model = _editViewModelBuilder.Build();
             }
 
-            return View("RobotsAdmin", model);
+            return View("RobotsSiteEdit", model);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Stott.Optimizely.RobotsHandler.UI
     {
         public IEnumerable<MenuItem> GetMenuItems()
         {
-            var adminModule = new UrlMenuItem("Robots", "/global/cms/admin/stott.optimizely.robots", "/Robots/Admin")
+            var adminModule = new UrlMenuItem("Robots", "/global/cms/admin/stott.optimizely.robots", "/Robots/List")
             {
                 IsAvailable = context => true,
                 SortIndex = 100

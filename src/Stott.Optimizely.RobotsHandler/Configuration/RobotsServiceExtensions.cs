@@ -12,6 +12,7 @@ namespace Stott.Optimizely.RobotsHandler.Configuration
             serviceCollection.AddTransient<IRobotsContentService, RobotsContentService>();
             serviceCollection.AddTransient<IRobotsContentRepository, RobotsContentRepository>();
             serviceCollection.AddTransient<IRobotsAdminViewModelBuilder, RobotsAdminViewModelBuilder>();
+            serviceCollection.AddTransient<IRobotsListViewModelBuilder, RobotsListViewModelBuilder>();
         }
     }
 }

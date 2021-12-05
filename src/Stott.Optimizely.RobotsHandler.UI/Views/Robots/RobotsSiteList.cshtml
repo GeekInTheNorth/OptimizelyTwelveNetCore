@@ -1,0 +1,36 @@
+﻿@model Stott.Optimizely.RobotsHandler.UI.ViewModels.RobotsListViewModel
+
+@{
+    Layout = "_RobotsLayout";
+}
+
+<div class="row">
+    <div class="col">
+        <h1>
+            Robots.txt Management
+        </h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Site Name</th>
+                    <th>Site Url</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var site in Model.List)
+                {
+                    <tr>
+                        <td>@site.Name</td>
+                        <td>@site.Url</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Robots", new { siteId = site.Id }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

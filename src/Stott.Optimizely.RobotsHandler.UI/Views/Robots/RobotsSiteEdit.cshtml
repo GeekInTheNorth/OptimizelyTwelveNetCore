@@ -1,0 +1,38 @@
+﻿@model Stott.Optimizely.RobotsHandler.UI.ViewModels.RobotsAdminViewModel
+
+@{
+    Layout = "_RobotsLayout";
+}
+
+<div class="row">
+    <div class="col">
+        <h1>
+            Robots.txt Management
+        </h1>
+
+        <ul class="nav nav-tabs">
+            @foreach (var site in Model.Sites)
+            {
+                var actionClass = site.SiteId.Equals(Model.CurrentSiteId) ? "nav-link active" : "nav-link";
+                <li class="nav-item">
+                    @Html.ActionLink(site.SiteName, "Admin", "Robots", new { siteId = site.SiteId }, new { @class = actionClass })
+                </li>
+            }
+        </ul>
+
+        <form asp-controller="Robots" asp-action="Admin" method="post" class="mt-2">
+            @Html.HiddenFor(x => x.CurrentSiteId)
+            @Html.HiddenFor(x => x.CurrentSiteName)
+
+            <div class="mb-3">
+                @Html.LabelFor(x => x.CurrentRobotsContent, "Robots.txt Content", new { @class = "form-label" })
+                @Html.TextAreaFor(x => x.CurrentRobotsContent, 10, 60, new { @class = "form-control" })
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" value="Submit" class="form-control" />
+            </div>
+        </form>
+    </div>
+</div>
+
