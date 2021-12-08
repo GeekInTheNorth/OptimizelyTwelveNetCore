@@ -6,11 +6,9 @@
 
 <div class="row">
     <div class="col">
-        <h1>
+        <h1 class="js-header">
             Robots.txt Management
         </h1>
-
-        <p></p>
 
         <table class="table table-striped">
             <thead>
@@ -45,7 +43,6 @@
                         <div class="modal-body">
 
                             <input type="hidden" name="SiteId" class="js-modal-siteid" />
-                            <input type="hidden" name="SiteName" class="js-modal-title" />
 
                             <div class="mb-3">
                                 <label for="Robots-Content">Robots.txt Content</label>
@@ -55,7 +52,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary js-save-button">Save changes</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>

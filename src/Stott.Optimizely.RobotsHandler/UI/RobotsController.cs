@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 
 using EPiServer.Logging;
 
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Stott.Optimizely.RobotsHandler.Exceptions;
 using Stott.Optimizely.RobotsHandler.Services;
+using Stott.Optimizely.RobotsHandler.UI.ViewModels;
 
 namespace Stott.Optimizely.RobotsHandler.UI
 {
@@ -88,7 +90,7 @@ namespace Stott.Optimizely.RobotsHandler.UI
         [HttpGet]
         [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
         [Route("[controller]/[action]")]
-        public IActionResult Edit(string siteId)
+        public IActionResult Details(string siteId)
         {
             if (!Guid.TryParse(siteId, out var siteIdGuid))
             {
@@ -100,17 +102,27 @@ namespace Stott.Optimizely.RobotsHandler.UI
             return Json(model);
         }
 
-        // TODO - Update to work as an AJAX post event.
-        ////[HttpPost]
-        ////[Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
-        ////[Route("[controller]/[action]")]
-        ////public IActionResult Edit(RobotsEditViewModel formSubmitModel)
-        ////{
-        ////    _robotsContentService.SaveRobotsContent(formSubmitModel.SiteId, formSubmitModel.RobotsContent);
-        ////
-        ////    var model = _editViewModelBuilder.WithSiteId(formSubmitModel.SiteId).Build();
-        ////
-        ////    return View("RobotsSiteEdit", model);
-        ////}
+        [HttpPost]
+        [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
+        [Route("[controller]/[action]")]
+        public IActionResult Save(RobotsEditViewModel formSubmitModel)
+        {
+            try
+            {
+                _robotsContentService.SaveRobotsContent(formSubmitModel.SiteId, formSubmitModel.RobotsContent);
+
+                return new OkResult();
+            }
+            catch(Exception exception)
+            {
+                _logger.Error($"Failed to save robots.txt content for {formSubmitModel.SiteName}", exception);
+                return new ContentResult
+                {
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
+                    Content = exception.Message,
+                    ContentType = "text/plain"
+                };
+            }
+        }
     }
 }
