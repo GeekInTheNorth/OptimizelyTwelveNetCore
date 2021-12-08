@@ -393,3 +393,5 @@ App_Data/
 
 # Modules
 */OptimizelyTwelveTest.Features/modules/**
+*/Stott.Optimizely.RobotsHandler.UI/modules/**
+*/Stott.Optimizely.RobotsHandler/modules/**
