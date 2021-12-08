@@ -7,7 +7,6 @@ using EPiServer.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using Stott.Optimizely.RobotsHandler.Exceptions;
 using Stott.Optimizely.RobotsHandler.Services;
 using Stott.Optimizely.RobotsHandler.UI.ViewModels;
 
@@ -48,17 +47,6 @@ namespace Stott.Optimizely.RobotsHandler.UI
                 return new ContentResult
                 {
                     Content = robotsContent,
-                    ContentType = "text/plain",
-                    StatusCode = 200
-                };
-            }
-            catch (RobotsContentException exception)
-            {
-                _logger.Error("A custom robots.txt does not exist for the current site.", exception);
-
-                return new ContentResult
-                {
-                    Content = _service.GetDefaultRobotsContent(true),
                     ContentType = "text/plain",
                     StatusCode = 200
                 };
