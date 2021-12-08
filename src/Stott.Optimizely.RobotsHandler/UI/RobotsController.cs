@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using Stott.Optimizely.RobotsHandler.Exceptions;
 using Stott.Optimizely.RobotsHandler.Services;
-using Stott.Optimizely.RobotsHandler.UI.ViewModels;
 
 namespace Stott.Optimizely.RobotsHandler.UI
 {
@@ -91,29 +90,27 @@ namespace Stott.Optimizely.RobotsHandler.UI
         [Route("[controller]/[action]")]
         public IActionResult Edit(string siteId)
         {
-            RobotsEditViewModel model;
-            if (!string.IsNullOrWhiteSpace(siteId) && Guid.TryParse(siteId, out var siteIdGuid))
+            if (!Guid.TryParse(siteId, out var siteIdGuid))
             {
-                model = _editViewModelBuilder.WithSiteId(siteIdGuid).Build();
-            }
-            else
-            {
-                return RedirectToAction("Edit");
+                throw new ArgumentException("siteId cannot be parsed as a valid GUID.", nameof(siteId));
             }
 
-            return View("RobotsSiteEdit", model);
+            var model = _editViewModelBuilder.WithSiteId(siteIdGuid).Build();
+
+            return Json(model);
         }
 
-        [HttpPost]
-        [Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
-        [Route("[controller]/[action]")]
-        public IActionResult Edit(RobotsEditViewModel formSubmitModel)
-        {
-            _robotsContentService.SaveRobotsContent(formSubmitModel.SiteId, formSubmitModel.RobotsContent);
-
-            var model = _editViewModelBuilder.WithSiteId(formSubmitModel.SiteId).Build();
-
-            return View("RobotsSiteEdit", model);
-        }
+        // TODO - Update to work as an AJAX post event.
+        ////[HttpPost]
+        ////[Authorize(Roles = "CmsAdmin,WebAdmins,Administrators")]
+        ////[Route("[controller]/[action]")]
+        ////public IActionResult Edit(RobotsEditViewModel formSubmitModel)
+        ////{
+        ////    _robotsContentService.SaveRobotsContent(formSubmitModel.SiteId, formSubmitModel.RobotsContent);
+        ////
+        ////    var model = _editViewModelBuilder.WithSiteId(formSubmitModel.SiteId).Build();
+        ////
+        ////    return View("RobotsSiteEdit", model);
+        ////}
     }
 }

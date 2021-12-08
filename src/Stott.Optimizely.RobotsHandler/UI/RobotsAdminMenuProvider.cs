@@ -9,16 +9,13 @@ namespace Stott.Optimizely.RobotsHandler.UI
     {
         public IEnumerable<MenuItem> GetMenuItems()
         {
-            var adminModule = new UrlMenuItem("Robots", "/global/cms/admin/stott.optimizely.robots", "/Robots/List")
+            var listMenuItem = new UrlMenuItem("Robots", "/global/cms/admin/stott.optimizely.robots", "/Robots/List")
             {
                 IsAvailable = context => true,
-                SortIndex = 100
+                SortIndex = 900
             };
 
-            return new List<MenuItem>(1)
-            {
-                adminModule
-            };
+            return new List<MenuItem> { listMenuItem };
         }
     }
 }
