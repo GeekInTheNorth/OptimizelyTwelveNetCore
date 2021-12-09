@@ -22,18 +22,12 @@ namespace Stott.Optimizely.RobotsHandler.Services
             this.robotsContentRepository = robotsContentRepository;
         }
 
-        public string GetDefaultRobotsContent(bool includeMessage = false)
+        public string GetDefaultRobotsContent()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("User-agent: *");
             stringBuilder.AppendLine("Disallow: /episerver/");
             stringBuilder.AppendLine("Disallow: /utils/");
-
-            if (includeMessage)
-            {
-                stringBuilder.AppendLine(string.Empty);
-                stringBuilder.AppendLine("# This version has been generated automatically.");
-            }
 
             return stringBuilder.ToString();
         }
@@ -54,7 +48,7 @@ namespace Stott.Optimizely.RobotsHandler.Services
             var robots = robotsContentRepository.Get(siteId);
             if (robots == null)
             {
-                return GetDefaultRobotsContent(false);
+                return GetDefaultRobotsContent();
             }
 
             return robots.RobotsContent;
