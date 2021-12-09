@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 
 using EPiServer.Logging;
@@ -20,20 +19,16 @@ namespace Stott.Optimizely.RobotsHandler.UI
 
         private readonly IRobotsListViewModelBuilder _listingViewModelBuilder;
 
-        private readonly IRobotsContentService _robotsContentService;
-
         private readonly ILogger _logger = LogManager.GetLogger(typeof(RobotsController));
 
         public RobotsController(
             IRobotsContentService service,
             IRobotsEditViewModelBuilder viewModelBuilder,
-            IRobotsListViewModelBuilder listingViewModelBuilder, 
-            IRobotsContentService robotsContentService)
+            IRobotsListViewModelBuilder listingViewModelBuilder)
         {
             _service = service;
             _editViewModelBuilder = viewModelBuilder;
             _listingViewModelBuilder = listingViewModelBuilder;
-            _robotsContentService = robotsContentService;
         }
 
         [HttpGet]
@@ -65,13 +60,6 @@ namespace Stott.Optimizely.RobotsHandler.UI
         {
             var model = _listingViewModelBuilder.Build();
 
-            if (model.List.Count == 1)
-            {
-                var id = model.List.First().Id;
-
-                return RedirectToAction("Edit", new { siteId = id });
-            }
-
             return View("RobotsSiteList", model);
         }
 
@@ -80,7 +68,7 @@ namespace Stott.Optimizely.RobotsHandler.UI
         [Route("[controller]/[action]")]
         public IActionResult Details(string siteId)
         {
-            if (!Guid.TryParse(siteId, out var siteIdGuid))
+            if (!Guid.TryParse(siteId, out var siteIdGuid) || Guid.Empty.Equals(siteIdGuid))
             {
                 throw new ArgumentException("siteId cannot be parsed as a valid GUID.", nameof(siteId));
             }
@@ -97,7 +85,7 @@ namespace Stott.Optimizely.RobotsHandler.UI
         {
             try
             {
-                _robotsContentService.SaveRobotsContent(formSubmitModel.SiteId, formSubmitModel.RobotsContent);
+                _service.SaveRobotsContent(formSubmitModel.SiteId, formSubmitModel.RobotsContent);
 
                 return new OkResult();
             }
