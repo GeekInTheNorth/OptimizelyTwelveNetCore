@@ -3,6 +3,7 @@ using System.Linq;
 
 using EPiServer.Web;
 
+using Stott.Optimizely.RobotsHandler.Exceptions;
 using Stott.Optimizely.RobotsHandler.Services;
 using Stott.Optimizely.RobotsHandler.UI.ViewModels;
 
@@ -29,11 +30,15 @@ namespace Stott.Optimizely.RobotsHandler.UI
         {
             if (_siteId == Guid.Empty)
             {
-                throw new Exception("oops");
+                throw new RobotsInvalidSiteIdException(_siteId);
             }
 
-            var allSites = _siteDefinitionRepository.List();
-            var selectedSite = allSites.FirstOrDefault(x => x.Id.Equals(_siteId));
+            var selectedSite = _siteDefinitionRepository.Get(_siteId);
+            if (selectedSite == null)
+            {
+                throw new RobotsInvalidSiteException($"'{_siteId}' does not refer to a valid site.");
+            }
+
             var robotsContent = _robotsContentService.GetRobotsContent(_siteId);
 
             return new RobotsEditViewModel
