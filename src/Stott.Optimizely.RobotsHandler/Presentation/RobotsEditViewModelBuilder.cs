@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Linq;
 
 using EPiServer.Web;
 
 using Stott.Optimizely.RobotsHandler.Exceptions;
+using Stott.Optimizely.RobotsHandler.Presentation.ViewModels;
 using Stott.Optimizely.RobotsHandler.Services;
-using Stott.Optimizely.RobotsHandler.UI.ViewModels;
 
-namespace Stott.Optimizely.RobotsHandler.UI
+namespace Stott.Optimizely.RobotsHandler.Presentation
 {
     public class RobotsEditViewModelBuilder : IRobotsEditViewModelBuilder
     {
@@ -18,7 +17,7 @@ namespace Stott.Optimizely.RobotsHandler.UI
         private Guid _siteId;
 
         public RobotsEditViewModelBuilder(
-            ISiteDefinitionRepository siteDefinitionRepository, 
+            ISiteDefinitionRepository siteDefinitionRepository,
             IRobotsContentService robotsContentService)
         {
             _siteDefinitionRepository = siteDefinitionRepository;

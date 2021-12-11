@@ -2,9 +2,9 @@
 
 using EPiServer.Web;
 
-using Stott.Optimizely.RobotsHandler.UI.ViewModels;
+using Stott.Optimizely.RobotsHandler.Presentation.ViewModels;
 
-namespace Stott.Optimizely.RobotsHandler.UI
+namespace Stott.Optimizely.RobotsHandler.Presentation
 {
     public class RobotsListViewModelBuilder : IRobotsListViewModelBuilder
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Stott.Optimizely.RobotsHandler.UI.ViewModels
+namespace Stott.Optimizely.RobotsHandler.Presentation.ViewModels
 {
     public class RobotsListViewModel
     {

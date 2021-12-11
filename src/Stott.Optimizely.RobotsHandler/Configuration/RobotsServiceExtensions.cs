@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using Stott.Optimizely.RobotsHandler.Presentation;
 using Stott.Optimizely.RobotsHandler.Services;
-using Stott.Optimizely.RobotsHandler.UI;
 
 namespace Stott.Optimizely.RobotsHandler.Configuration
 {

@@ -2,7 +2,7 @@
 
 using EPiServer.Shell.Navigation;
 
-namespace Stott.Optimizely.RobotsHandler.UI
+namespace Stott.Optimizely.RobotsHandler.Presentation
 {
     [MenuProvider]
     public class RobotsAdminMenuProvider : IMenuProvider

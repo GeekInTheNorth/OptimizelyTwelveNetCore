@@ -4,19 +4,19 @@ using Moq;
 
 using NUnit.Framework;
 
+using Stott.Optimizely.RobotsHandler.Presentation;
 using Stott.Optimizely.RobotsHandler.Services;
 using Stott.Optimizely.RobotsHandler.Test.TestCases;
-using Stott.Optimizely.RobotsHandler.UI;
 
-namespace Stott.Optimizely.RobotsHandler.Test.UI
+namespace Stott.Optimizely.RobotsHandler.Test.Presentation
 {
     [TestFixture]
     public class RobotsControllerTests
     {
         private Mock<IRobotsContentService> _mockService;
-        
+
         private Mock<IRobotsEditViewModelBuilder> _mockEditViewModelBuilder;
-        
+
         private Mock<IRobotsListViewModelBuilder> _mockListingViewModelBuilder;
 
         private RobotsController _controller;
@@ -25,7 +25,7 @@ namespace Stott.Optimizely.RobotsHandler.Test.UI
         public void SetUp()
         {
             _mockService = new Mock<IRobotsContentService>();
-            
+
             _mockEditViewModelBuilder = new Mock<IRobotsEditViewModelBuilder>();
             _mockEditViewModelBuilder.Setup(x => x.WithSiteId(It.IsAny<Guid>())).Returns(_mockEditViewModelBuilder.Object);
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Stott.Optimizely.RobotsHandler.UI.ViewModels
+namespace Stott.Optimizely.RobotsHandler.Presentation.ViewModels
 {
     public class SiteViewModel
     {

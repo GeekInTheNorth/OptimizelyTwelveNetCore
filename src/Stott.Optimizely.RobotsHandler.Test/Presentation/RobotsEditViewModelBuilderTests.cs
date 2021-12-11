@@ -7,8 +7,8 @@ using Moq;
 using NUnit.Framework;
 
 using Stott.Optimizely.RobotsHandler.Exceptions;
+using Stott.Optimizely.RobotsHandler.Presentation;
 using Stott.Optimizely.RobotsHandler.Services;
-using Stott.Optimizely.RobotsHandler.UI;
 
 namespace Stott.Optimizely.RobotsHandler.Test.UI
 {

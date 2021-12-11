@@ -6,10 +6,10 @@ using EPiServer.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using Stott.Optimizely.RobotsHandler.Presentation.ViewModels;
 using Stott.Optimizely.RobotsHandler.Services;
-using Stott.Optimizely.RobotsHandler.UI.ViewModels;
 
-namespace Stott.Optimizely.RobotsHandler.UI
+namespace Stott.Optimizely.RobotsHandler.Presentation
 {
     public class RobotsController : Controller
     {
@@ -89,7 +89,7 @@ namespace Stott.Optimizely.RobotsHandler.UI
 
                 return new OkResult();
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 _logger.Error($"Failed to save robots.txt content for {formSubmitModel.SiteName}", exception);
                 return new ContentResult
