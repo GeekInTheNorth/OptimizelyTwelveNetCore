@@ -8,11 +8,10 @@
     <PackageReference Include="EPiServer.Find.Cms" Version="14.0.2" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Stott.Optimizely.RobotsHandler" Version="1.0.0" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OptimizelyTwelveTest.Features\OptimizelyTwelveTest.Features.csproj" />
-    <ProjectReference Include="..\Stott.Optimizely.RobotsHandler.UI\Stott.Optimizely.RobotsHandler.csproj" />
-    <ProjectReference Include="..\Stott.Optimizely.RobotsHandler\Stott.Optimizely.RobotsHandler.csproj" />
   </ItemGroup>
 </Project>
